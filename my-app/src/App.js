@@ -1,7 +1,11 @@
 
 import React, { useState, useEffect} from 'react'
+import Countries from './components/Countries';
 
-const url = "https://restcountries.cm/v3.1/all";
+
+
+
+const url = "https://restcountries.com/v3.1/all";
 
 const App = () => {
   const[isLoading,setIsLoading] = useState(true);
@@ -18,17 +22,15 @@ const App = () => {
     setError(false);
     console.log(countries);
     
-    } catch(err){
-      setIsLoading(false);
-      setError(err);
+    }catch(err){
+    setIsLoading(false);
+    setError(err);
     }
 
-  }
+   }
 
   useEffect(() => {
-    fetchData(url)
-    console.log("useeffect is used ")
-  }, [])
+  fetchData(url)},[])
   
 
   return (
@@ -36,6 +38,8 @@ const App = () => {
       <h1> Country App</h1>
       {isLoading && <h2> Loading...</h2>}
       { error && <h2>{error.message}</h2>}
+      { countries && <Countries  countries={countries}/> }
+     
 
     </div>
   )
