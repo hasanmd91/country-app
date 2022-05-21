@@ -7,3 +7,4 @@ step 2# fetch data
 step 3# display data
 step 4# remove country functionality 
 step 5# search country functionlaity 
+click here for deploy https://stalwart-sable-e890e7.netlify.app/
