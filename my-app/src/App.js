@@ -14,6 +14,7 @@ const App = () => {
   const[error, setError] =useState(null);
   const[countries, setCountries]= useState([]);
 
+
   const fetchData = async (url)=> {
     setIsLoading(true);
     try{
@@ -22,7 +23,7 @@ const App = () => {
     setCountries(data);
     setIsLoading(false);
     setError(false);
-    console.log(countries);
+
     
     }catch(err){
     setIsLoading(false);
@@ -32,7 +33,14 @@ const App = () => {
    }
 
   useEffect(() => {
-  fetchData(url)},[])
+  fetchData(url)},[]);
+
+  const handleRemoveCountry= (name)=> {
+   const filterCountries =  countries.filter((country) => {
+      return country.name.common !== name   });
+      setCountries(filterCountries);
+  }
+
   
 
   return (
@@ -40,7 +48,7 @@ const App = () => {
       <h1> Country App</h1>
       {isLoading && <h2> Loading...</h2>}
       { error && <h2>{error.message}</h2>}
-      { countries && <Countries  countries={countries}/> }
+      { countries && <Countries  countries={countries} onRemoveCountry={handleRemoveCountry}/> }
      
 
     </div>
