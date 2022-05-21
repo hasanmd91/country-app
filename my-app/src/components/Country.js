@@ -7,7 +7,6 @@ const Country = (props) => {
 
 
   const handleRemoveCountry = (name)=> { 
-  
     props.onRemoveCountry(name);
   }
 

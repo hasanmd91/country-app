@@ -3,6 +3,7 @@ import React, { useState, useEffect} from 'react'
 
 import Countries from './components/Countries';
 import "./app.css";
+import Search from './components/Search';
 
 
 
@@ -41,11 +42,19 @@ const App = () => {
       setCountries(filterCountries);
   }
 
-  
+  const handleSearch = (searchValue)=>{
+    let value = searchValue.toLowerCase();
+    const newCountries = countries.filter((country)=> {
+      const countryName = country.name.common.toLowerCase(); 
+      return countryName.startsWith(value) //The startsWith() method returns true if a string starts with a specified string.
+    })
+    setCountries(newCountries)
+  }
 
   return (
     <div>
       <h1> Country App</h1>
+      <h1> <Search  onSearch={handleSearch}/> </h1>
       {isLoading && <h2> Loading...</h2>}
       { error && <h2>{error.message}</h2>}
       { countries && <Countries  countries={countries} onRemoveCountry={handleRemoveCountry}/> }
